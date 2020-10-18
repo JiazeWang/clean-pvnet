@@ -48,7 +48,7 @@ class Visualizer:
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='b'))
         ax.figure.savefig(name)
         #plt.close('all')
-        plt.show()
+        #plt.show()
 
     def visualize_train(self, output, batch):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
