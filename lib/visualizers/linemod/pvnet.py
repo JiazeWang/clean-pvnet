@@ -37,14 +37,18 @@ class Visualizer:
         corner_2d_pred = pvnet_pose_utils.project(corner_3d, K, pose_pred)
 
         _, ax = plt.subplots(1)
+        plt.axis('off')
+        frame = plt.gca()
+        frame.axes.get_yaxis().set_visible(False)
+        frame.axes.get_xaxis().set_visible(False)
         ax.imshow(inp)
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='g'))
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
-        ax.figure.savefig(name)
+        ax.figure.savefig(name, dpi=150)
         #plt.close('all')
-        #plt.show()
+        plt.show()
 
     def visualize_train(self, output, batch):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
