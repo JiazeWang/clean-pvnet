@@ -94,7 +94,7 @@ def run_visualize():
 
     data_loader = make_data_loader(cfg, is_train=False)
     visualizer = make_visualizer(cfg)
-    num = 0
+    num = -1
     for batch in tqdm.tqdm(data_loader):
         num = num + 1
         name = '%06d.jpg' % num
