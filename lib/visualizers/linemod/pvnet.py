@@ -20,7 +20,7 @@ class Visualizer:
         self.ann_file = args['ann_file']
         self.coco = coco.COCO(self.ann_file)
 
-    def visualize(self, output, batch):
+    def visualize(self, output, batch, name):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
         kpt_2d = output['kpt_2d'][0].detach().cpu().numpy()
 
@@ -42,7 +42,7 @@ class Visualizer:
         ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='b'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='b'))
-        ax.savefig("test.jpg")
+        ax.figure.savefig(name)
         #plt.show()
 
     def visualize_train(self, output, batch):

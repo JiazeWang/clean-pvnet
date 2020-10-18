@@ -95,12 +95,15 @@ def run_visualize():
     data_loader = make_data_loader(cfg, is_train=False)
     visualizer = make_visualizer(cfg)
     for batch in tqdm.tqdm(data_loader):
+        num = 0
+        num = num + 1
+        name = '%06d.jpg' % num
         for k in batch:
             if k != 'meta':
                 batch[k] = batch[k].cuda()
         with torch.no_grad():
             output = network(batch['inp'], batch)
-        visualizer.visualize(output, batch)
+        visualizer.visualize(output, batch, name)
 
 
 def run_visualize_train():
@@ -213,7 +216,7 @@ def run_render():
 
     plt.imshow(depth)
     plt.show()
-    
+
 
 def run_custom():
     from tools import handle_custom_dataset
@@ -224,4 +227,3 @@ def run_custom():
 
 if __name__ == '__main__':
     globals()['run_'+args.type]()
-
