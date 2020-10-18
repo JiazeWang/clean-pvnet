@@ -43,7 +43,7 @@ class Visualizer:
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='b'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='b'))
         ax.figure.savefig(name)
-        plt.close('all')
+        #plt.close('all')
         #plt.show()
 
     def visualize_train(self, output, batch):
