@@ -98,12 +98,13 @@ def run_visualize():
     for batch in tqdm.tqdm(data_loader):
         num = num + 1
         name = '%06d.jpg' % num
+        high_resolution = '/mnt/SSD/jzwang/code/clean-pvnet/223_high/' + name
         for k in batch:
             if k != 'meta':
                 batch[k] = batch[k].cuda()
         with torch.no_grad():
             output = network(batch['inp'], batch)
-        visualizer.visualize(output, batch, name)
+        visualizer.visualize(output, batch, name, high_resolution)
 
 
 def run_visualize_train():
