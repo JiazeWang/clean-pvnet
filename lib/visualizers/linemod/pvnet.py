@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from lib.utils import img_utils
 import matplotlib.patches as patches
 from lib.utils.pvnet import pvnet_pose_utils
-
+from PIL import Image
 
 mean = pvnet_config.mean
 std = pvnet_config.std
