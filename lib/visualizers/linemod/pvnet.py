@@ -27,9 +27,12 @@ class Visualizer:
         img_id = int(batch['img_id'][0])
         anno = self.coco.loadAnns(self.coco.getAnnIds(imgIds=img_id))[0]
         kpt_3d = np.concatenate([anno['fps_3d'], [anno['center_3d']]], axis=0)
-        K = np.array(anno['K'])
-        print(K)
-        print(K.shape)
+        #K = np.array(anno['K'])
+        #print(K)
+        #print(K.shape)
+        K = np.array([[1.2430691e+03, 0, 5.45181403e+02],
+                      [0, 1.23942895e+03, 7.0817400e+02],
+                      [0, 0, 1]])
 
         pose_gt = np.array(anno['pose'])
         pose_pred = pvnet_pose_utils.pnp(kpt_3d, kpt_2d, K)
