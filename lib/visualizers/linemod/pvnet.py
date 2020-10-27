@@ -22,7 +22,7 @@ class Visualizer:
 
     def visualize(self, output, batch, name, high_resolution):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
-        inpnew = Image.open(high_resolution)
+        #inpnew = Image.open(high_resolution)
         kpt_2d = output['kpt_2d'][0].detach().cpu().numpy()
         print(kpt_2d)
         img_id = int(batch['img_id'][0])
@@ -35,7 +35,7 @@ class Visualizer:
                       [0, 1.23942895e+03, 7.0817400e+02],
                       [0, 0, 1]])
 
-        pose_gt = np.array(anno['pose'])
+        #pose_gt = np.array(anno['pose'])
         pose_pred = pvnet_pose_utils.pnp(kpt_3d, kpt_2d, K)
 
         corner_3d = np.array(anno['corner_3d'])
