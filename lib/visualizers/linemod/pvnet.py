@@ -24,7 +24,7 @@ class Visualizer:
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
         inpnew = Image.open(high_resolution)
         kpt_2d = output['kpt_2d'][0].detach().cpu().numpy()
-
+        print(kpt_2d)
         img_id = int(batch['img_id'][0])
         anno = self.coco.loadAnns(self.coco.getAnnIds(imgIds=img_id))[0]
         kpt_3d = np.concatenate([anno['fps_3d'], [anno['center_3d']]], axis=0)
@@ -41,7 +41,7 @@ class Visualizer:
         corner_3d = np.array(anno['corner_3d'])
         #corner_2d_gt = pvnet_pose_utils.project(corner_3d, K, pose_gt)
         corner_2d_pred = pvnet_pose_utils.project(corner_3d, K, pose_pred)
-        print(corner_2d_pred)
+        #print(corner_2d_pred)
         _, ax = plt.subplots(1)
         plt.axis('off')
         frame = plt.gca()
