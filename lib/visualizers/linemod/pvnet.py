@@ -42,7 +42,7 @@ class Visualizer:
         #corner_2d_gt = pvnet_pose_utils.project(corner_3d, K, pose_gt)
         corner_2d_pred = pvnet_pose_utils.project(corner_3d, K, pose_pred)
         #print(corner_2d_pred)
-        corner_2d_pred = corner_2d_pred 
+        corner_2d_pred = corner_2d_pred
         _, ax = plt.subplots(1)
         plt.axis('off')
         frame = plt.gca()
@@ -53,7 +53,7 @@ class Visualizer:
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=2, edgecolor='r'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=2, edgecolor='r'))
-        ax.figure.savefig(name, bbox_inches='tight', dpi = 300)
+        ax.figure.savefig(name, bbox_inches='tight', figsize=(6.4, 4.8), dpi = 100)
         #plt.close('all')
         #plt.show()
 
