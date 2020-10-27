@@ -52,7 +52,7 @@ class Visualizer:
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=2, edgecolor='r'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=2, edgecolor='r'))
-        ax.figure.savefig(name, bbox_inches='tight')
+        ax.figure.savefig(name, bbox_inches='tight', dpi = 600)
         #plt.close('all')
         #plt.show()
 
