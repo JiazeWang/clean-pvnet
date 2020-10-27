@@ -22,7 +22,7 @@ class Visualizer:
 
     def visualize(self, output, batch, name, high_resolution):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
-        #inp = Image.open(high_resolution)
+        inp = Image.open(high_resolution)
         kpt_2d = output['kpt_2d'][0].detach().cpu().numpy()
 
         img_id = int(batch['img_id'][0])
@@ -42,25 +42,17 @@ class Visualizer:
         corner_2d_gt = pvnet_pose_utils.project(corner_3d, K, pose_gt)
         corner_2d_pred = pvnet_pose_utils.project(corner_3d, K, pose_pred)
 
-        #_, ax = plt.subplots(1)
+        _, ax = plt.subplots(1)
         plt.axis('off')
         frame = plt.gca()
         frame.axes.get_yaxis().set_visible(False)
         frame.axes.get_xaxis().set_visible(False)
-        plt.imshow(inp)
-        #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='g'))
-        #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
-        plt.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=2, edgecolor='r'))
-        plt.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=2, edgecolor='r'))
-        plt.savefig(name, bbox_inches='tight')
-        """
         ax.imshow(inp)
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=1, edgecolor='g'))
         #ax.add_patch(patches.Polygon(xy=corner_2d_gt[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=1, edgecolor='g'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[0, 1, 3, 2, 0, 4, 6, 2]], fill=False, linewidth=2, edgecolor='r'))
         ax.add_patch(patches.Polygon(xy=corner_2d_pred[[5, 4, 6, 7, 5, 1, 3, 7]], fill=False, linewidth=2, edgecolor='r'))
         ax.figure.savefig(name, bbox_inches='tight')
-        """
         #plt.close('all')
         #plt.show()
 
