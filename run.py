@@ -1,7 +1,7 @@
 from lib.config import cfg, args
 import numpy as np
 import os
-
+from PIL import Image
 
 def run_rgb():
     import glob
@@ -99,6 +99,7 @@ def run_visualize():
         num = num + 1
         name = '%06d.jpg' % num
         high_resolution = '/mnt/SSD/jzwang/code/clean-pvnet/223_high/' + name
+        high_resolution = Image.open(high_resolution)
         for k in batch:
             if k != 'meta':
                 batch[k] = batch[k].cuda()

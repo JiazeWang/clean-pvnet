@@ -22,7 +22,7 @@ class Visualizer:
 
     def visualize(self, output, batch, name, high_resolution):
         inp = img_utils.unnormalize_img(batch['inp'][0], mean, std).permute(1, 2, 0)
-        inpnew = Image.open(high_resolution)
+        inpnew = high_resolution
         kpt_2d = output['kpt_2d'][0].detach().cpu().numpy()
         #print(kpt_2d)
         img_id = int(batch['img_id'][0])
