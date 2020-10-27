@@ -98,7 +98,7 @@ def run_visualize():
     for batch in tqdm.tqdm(data_loader):
         num = num + 1
         name = '%06d.jpg' % num
-        high_resolution = '/mnt/SSD/jzwang/code/clean-pvnet/' + name
+        #high_resolution = '/mnt/SSD/jzwang/code/clean-pvnet/' + name
         high_resolution = Image.open(high_resolution)
         for k in batch:
             if k != 'meta':
